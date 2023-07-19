@@ -15,7 +15,9 @@ function App() {
   const fetchData = async () => {
     try {
       const fetchedData = await axios.get(
-        "https://dummyjson.com/products?limit=5&skip=22"
+        `https://dummyjson.com/products?limit=${itemsPerPage}&skip=${
+          (currentPage - 1) * itemsPerPage
+        }`
       );
       console.log(fetchedData.data.products);
       setItems(fetchedData.data.products);
@@ -27,6 +29,15 @@ function App() {
   const handleItemsPerPageChange = (e) => {
     setItemsPerPage(e.target.value);
     setCurrentpage(1);
+  };
+
+  const handlePrev = () => {
+    if (currentPage > 1) setCurrentpage(currentPage - 1);
+  };
+
+  const handleNext = () => {
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    if (currentPage < totalPages) setCurrentpage(currentPage + 1);
   };
 
   return (
@@ -45,14 +56,21 @@ function App() {
             <th>Price</th>
           </tr>
         </thead>
-        {items.map((item, i) => (
-          <tr key={i}>
-            <td>{item.id}</td>
-            <td>{item.title}</td>
-            <td>{item.price}</td>
-          </tr>
-        ))}
+        <tbody>
+          {items.map((item) => (
+            <tr key={item.id}>
+              <td>{item.id}</td>
+              <td>{item.title}</td>
+              <td>{item.price}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
+      <div>
+        <button onClick={handlePrev}>Prev</button> 
+        <p>{currentPage}</p>
+        <button onClick={handleNext}>Next</button>
+      </div>
     </div>
   );
 }
