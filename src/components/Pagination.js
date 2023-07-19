@@ -16,7 +16,13 @@ const Pagination = ({
   return (
     <div>
       <button
-        className="px-2  border-[1px] border-[#73BEEF] font-medium bg-[#73BEEF] text-white"
+        className="px-2  border-[1px] border-[#161a1c] font-medium bg-[#6995E3] text-white"
+        onClick={() => handleCurrentPage(1)}
+      >
+        &lt;&lt;
+      </button>
+      <button
+        className="px-2  border-[1px] border-[#3080b5] font-medium bg-[#6FAFEA] text-white"
         onClick={handlePrev}
       >
         &lt;
@@ -28,7 +34,7 @@ const Pagination = ({
             key={item}
             className={`px-2  border-[1px] border-[#73BEEF] font-medium  ${
               item === currentPage
-                ? "bg-[#73BEEF] text-white"
+                ? "bg-[#6FAFEA] text-white"
                 : " bg-white text-[#3a3b3c]"
             }`}
             onClick={() => handleCurrentPage(item)}
@@ -38,10 +44,16 @@ const Pagination = ({
         );
       })}
       <button
-        className="px-2  border-[1px] border-[#73BEEF] font-medium bg-[#73BEEF] text-white"
+        className="px-2  border-[1px] border-[#3080b5] font-medium bg-[#6FAFEA] text-white"
         onClick={handleNext}
       >
         &gt;
+      </button>
+      <button
+        className="px-2  border-[1px] border-[#3080b5] font-medium bg-[#6995E3] text-white"
+        onClick={() => handleCurrentPage(totalPages)}
+      >
+        &gt;&gt;
       </button>
     </div>
   );
