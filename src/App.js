@@ -50,7 +50,7 @@ function App() {
   };
 
   return (
-    <div className="App w-[100vw] min-h-[100vh] bg-[#ededed] flex flex-col justify-start items-center p-5 font-poppins">
+    <div className="App w-[100vw] min-h-[100vh] bg-[#ededed] flex flex-col justify-start items-center p-5 font-poppins overflow-scroll">
       <h1 className="heading text-3xl text-[#73BEEF] font-medium p-2 m-2">
         PRODUCT INVENTORY
       </h1>
@@ -91,9 +91,6 @@ function App() {
               <th className="p-2 font-medium border-2 border-[#ededed]">
                 Rating
               </th>
-              <th className="p-2 font-medium border-2 border-[#ededed]">
-                Stock
-              </th>
             </tr>
           </thead>
           <tbody>
@@ -109,9 +106,6 @@ function App() {
                 </td>
                 <td className="p-2 border-2 border-[#ededed]">
                   {item.rating}⭐
-                </td>
-                <td className="p-2 border-2 border-[#ededed]">
-                  {item.stock}
                 </td>
               </tr>
             ))}

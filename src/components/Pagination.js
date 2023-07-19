@@ -8,9 +8,9 @@ const Pagination = ({
   totalPages,
 }) => {
   let pageNumbers = [];
-  
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
+
+  for (let i = currentPage - 2; i <= currentPage + 2; i++) {
+    if (i > 0 && i <= totalPages) pageNumbers.push(i);
   }
 
   return (
