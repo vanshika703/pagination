@@ -8,6 +8,7 @@ function App() {
   const [currentPage, setCurrentpage] = useState(1);
   const [items, setItems] = useState([]);
   const totalItems = 100;
+  const totalPages = totalItems / itemsPerPage;
 
   useEffect(() => {
     fetchData();
@@ -51,7 +52,14 @@ function App() {
         PRODUCT INVENTORY
       </h1>
       <div className="flex justify-between sm:w-2/3">
-        <Pagination />
+        <Pagination
+          className=""
+          handleCurrentPage={handleCurrentPage}
+          handlePrev={handlePrev}
+          handleNext={handleNext}
+          currentPage={currentPage}
+          totalPages={totalPages}
+        />
         <label>
           Items per page:
           <select value={itemsPerPage} onChange={handleItemsPerPageChange}>
@@ -95,6 +103,7 @@ function App() {
         handlePrev={handlePrev}
         handleNext={handleNext}
         currentPage={currentPage}
+        totalPages={totalPages}
       />
     </div>
   );
