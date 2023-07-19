@@ -1,4 +1,23 @@
-# Getting Started with Create React App
+## Pagination Implementation with React
+
+Live website: https://react-pagination-crib.netlify.app/
+
+This is a single-page application built on React. It consists of a paginated table displaying an inventory of items built from scratch. The items are fetched by calling a GET request to an API using Axios. The clean and minimal styling is done using TailwindCSS.
+
+The user can change the number of rows they want to see on each page using a dropdown menu : 
+![image](https://github.com/vanshika703/pagination/assets/50284087/6d51b1f3-b625-49fe-9356-22f50b12cafd)
+
+![image](https://github.com/vanshika703/pagination/assets/50284087/49044c59-775a-47e7-bc94-8ea9ea5df492)
+
+The user can navigate to the previous and next page using the previous or next page buttons. They can also jump to any page number using the page number buttons or directly jump to the first and last page using those buttons respectively :
+![image](https://github.com/vanshika703/pagination/assets/50284087/2b6e9fd4-6f86-4958-b708-c821f57840f0)
+
+There is a loader given which will be displayed when the data is being fetched. An error message will be displayed if there is any error in fetching the data :
+![image](https://github.com/vanshika703/pagination/assets/50284087/b9d0a8ad-5591-482b-85da-9ae52b7766ac)
+
+
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
