@@ -48,7 +48,7 @@ function App() {
   return (
     <div className="App w-[100vw] min-h-[100vh] bg-[#ededed] flex flex-col justify-start items-center p-5 font-poppins">
       <h1 className="heading text-3xl text-[#73BEEF] font-medium p-2 m-2">
-        Product Inventory
+        PRODUCT INVENTORY
       </h1>
       <div className="flex justify-between sm:w-2/3">
         <Pagination />
@@ -91,10 +91,10 @@ function App() {
       </table>
       <Pagination
         className=""
+        handleCurrentPage={handleCurrentPage}
         handlePrev={handlePrev}
         handleNext={handleNext}
         currentPage={currentPage}
-        handleCurrentPage={handleCurrentPage}
       />
     </div>
   );

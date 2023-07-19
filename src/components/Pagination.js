@@ -1,6 +1,6 @@
 import React from "react";
 
-const Pagination = ({ handlePrev, handleNext, currentPage,handleCurrentPage }) => {
+const Pagination = ({ handlePrev, handleNext, currentPage, handleCurrentPage }) => {
   return (
     <div>
       <button
@@ -17,7 +17,7 @@ const Pagination = ({ handlePrev, handleNext, currentPage,handleCurrentPage }) =
             className={`px-2  border-[1px] border-[#73BEEF] font-medium  ${
               item === currentPage ? "bg-[#73BEEF] text-white" : " bg-white text-[#3a3b3c]"
             }`}
-            onClick={handleCurrentPage(item)}
+            onClick={() => handleCurrentPage(item)}
           >
             {item}
           </button>
