@@ -6,6 +6,7 @@ import Pagination from "./components/Pagination.js";
 function App() {
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [currentPage, setCurrentpage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
   const [items, setItems] = useState([]);
   const totalItems = 100;
   const totalPages = totalItems / itemsPerPage;
@@ -15,6 +16,7 @@ function App() {
   }, [currentPage, itemsPerPage]);
 
   const fetchData = async () => {
+    setIsLoading(true);
     try {
       const fetchedData = await axios.get(
         `https://dummyjson.com/products?limit=${itemsPerPage}&skip=${
@@ -26,6 +28,7 @@ function App() {
     } catch (err) {
       console.log(err);
     }
+    setIsLoading(false);
   };
 
   const handleItemsPerPageChange = (e) => {
@@ -51,7 +54,7 @@ function App() {
       <h1 className="heading text-3xl text-[#73BEEF] font-medium p-2 m-2">
         PRODUCT INVENTORY
       </h1>
-      <div className="flex justify-between sm:w-2/3">
+      <div className="flex justify-between w-5/6">
         <Pagination
           className=""
           handleCurrentPage={handleCurrentPage}
@@ -69,34 +72,52 @@ function App() {
           </select>
         </label>
       </div>
-      <table className="sm:w-2/3 w-full bg-slate-50 p-2 m-2 text-[#3a3b3c]">
-        <thead>
-          <tr className="table-row text-white font-thin">
-            <th className="p-2 font-medium border-2 border-[#ededed]">ID</th>
-            <th className="p-2 font-medium border-2 border-[#ededed]">Name</th>
-            <th className="p-2 font-medium border-2 border-[#ededed]">
-              Category
-            </th>
-            <th className="p-2 font-medium border-2 border-[#ededed]">Price</th>
-            <th className="p-2 font-medium border-2 border-[#ededed]">
-              Rating
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {items.map((item) => (
-            <tr key={item.id} className=" border-2 border-[#ededed]">
-              <td className="p-2 border-2 border-[#ededed]">{item.id}</td>
-              <td className="p-2 border-2 border-[#ededed]">{item.title}</td>
-              <td className="p-2 border-2 border-[#ededed]">{item.category}</td>
-              <td className="p-2 border-2 border-[#ededed] text-green-400">
-                &#8377;{item.price}
-              </td>
-              <td className="p-2 border-2 border-[#ededed]">{item.rating}⭐</td>
+      {isLoading ? (
+        <p className="m-10 p-10 text-3xl">Loading....</p>
+      ) : (
+        <table className="w-5/6 bg-slate-50 p-2 m-2 text-[#3a3b3c]">
+          <thead>
+            <tr className="table-row text-white font-thin">
+              <th className="p-2 font-medium border-2 border-[#ededed]">ID</th>
+              <th className="p-2 font-medium border-2 border-[#ededed]">
+                Name
+              </th>
+              <th className="p-2 font-medium border-2 border-[#ededed]">
+                Category
+              </th>
+              <th className="p-2 font-medium border-2 border-[#ededed]">
+                Price
+              </th>
+              <th className="p-2 font-medium border-2 border-[#ededed]">
+                Rating
+              </th>
+              <th className="p-2 font-medium border-2 border-[#ededed]">
+                Stock
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {items.map((item) => (
+              <tr key={item.id} className=" border-2 border-[#ededed]">
+                <td className="p-2 border-2 border-[#ededed]">{item.id}</td>
+                <td className="p-2 border-2 border-[#ededed]">{item.title}</td>
+                <td className="p-2 border-2 border-[#ededed]">
+                  {item.category}
+                </td>
+                <td className="p-2 border-2 border-[#ededed] text-green-400">
+                  &#8377;{item.price}
+                </td>
+                <td className="p-2 border-2 border-[#ededed]">
+                  {item.rating}⭐
+                </td>
+                <td className="p-2 border-2 border-[#ededed]">
+                  {item.stock}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
       <Pagination
         className=""
         handleCurrentPage={handleCurrentPage}
