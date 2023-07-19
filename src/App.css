@@ -9,3 +9,7 @@
 .App {
   text-align: left;
 }
+
+.table-row{
+  background: radial-gradient(circle at 12.3% 19.3%, rgb(103, 142, 225) 0%, rgb(122, 220, 247) 100.2%);
+}

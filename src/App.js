@@ -1,6 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Pagination from "./components/Pagination.js";
 
 function App() {
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -40,39 +41,61 @@ function App() {
     if (currentPage < totalPages) setCurrentpage(currentPage + 1);
   };
 
+  const handleCurrentPage = (page) => {
+    setCurrentpage(page);
+  };
+
   return (
-    <div className="App w-[100vw] min-h-[100vh] bg-[#F8EEFF] flex flex-col justify-start items-center p-5 font-poppins">
-      <h1 className="text-3xl text-[#dba6f5] font-medium">Pagination in React</h1>
-      <input
-        type="number"
-        placeholder="Enter number of items per page"
-        onChange={handleItemsPerPageChange}
-        //value={itemsPerPage}
-        className="sm:w-1/4 w-full bg-[#F8EEFF] border-b-2 border-[#EDC8FF] p-2 m-4 focus:outline-none"
-      />
-      <table className="sm:w-1/3 w-full bg-slate-50 p-2 m-2 text-[#3a3b3c]">
+    <div className="App w-[100vw] min-h-[100vh] bg-[#ededed] flex flex-col justify-start items-center p-5 font-poppins">
+      <h1 className="heading text-3xl text-[#73BEEF] font-medium p-2 m-2">
+        Product Inventory
+      </h1>
+      <div className="flex justify-between sm:w-2/3">
+        <Pagination />
+        <label>
+          Items per page:
+          <select value={itemsPerPage} onChange={handleItemsPerPageChange}>
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={15}>15</option>
+          </select>
+        </label>
+      </div>
+      <table className="sm:w-2/3 w-full bg-slate-50 p-2 m-2 text-[#3a3b3c]">
         <thead>
-          <tr className="bg-[#EDC8FF]">
-            <th className="p-2">ID</th>
-            <th className="p-2">Name</th>
-            <th className="p-2">Price</th>
+          <tr className="table-row text-white font-thin">
+            <th className="p-2 font-medium border-2 border-[#ededed]">ID</th>
+            <th className="p-2 font-medium border-2 border-[#ededed]">Name</th>
+            <th className="p-2 font-medium border-2 border-[#ededed]">
+              Category
+            </th>
+            <th className="p-2 font-medium border-2 border-[#ededed]">Price</th>
+            <th className="p-2 font-medium border-2 border-[#ededed]">
+              Rating
+            </th>
           </tr>
         </thead>
         <tbody>
           {items.map((item) => (
-            <tr key={item.id} className=" border-b-2 border-[#EDC8FF]">
-              <td className="p-2">{item.id}</td>
-              <td className="p-2">{item.title}</td>
-              <td className="p-2">{item.price}</td>
+            <tr key={item.id} className=" border-2 border-[#ededed]">
+              <td className="p-2 border-2 border-[#ededed]">{item.id}</td>
+              <td className="p-2 border-2 border-[#ededed]">{item.title}</td>
+              <td className="p-2 border-2 border-[#ededed]">{item.category}</td>
+              <td className="p-2 border-2 border-[#ededed] text-green-400">
+                &#8377;{item.price}
+              </td>
+              <td className="p-2 border-2 border-[#ededed]">{item.rating}⭐</td>
             </tr>
           ))}
         </tbody>
       </table>
-      <div className="flex w-20 justify-around p-2 m-2 text-[#dba6f5] font-medium">
-        <button onClick={handlePrev}>&lt; </button>
-        <p>{currentPage}</p>
-        <button onClick={handleNext}>&gt;</button>
-      </div>
+      <Pagination
+        className=""
+        handlePrev={handlePrev}
+        handleNext={handleNext}
+        currentPage={currentPage}
+        handleCurrentPage={handleCurrentPage}
+      />
     </div>
   );
 }
