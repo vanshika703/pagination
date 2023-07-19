@@ -1,23 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function App() {
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [currentPage, setCurrentpage] = useState(1);
+  const [items, setItems] = useState([]);
+  const totalItems = 100;
+
+  useEffect(() => {
+    fetchData();
+  }, [currentPage, itemsPerPage]);
+
+  const fetchData = async () => {
+    try {
+      const fetchedData = await axios.get(
+        "https://dummyjson.com/products?limit=5&skip=22"
+      );
+      console.log(fetchedData.data.products);
+      setItems(fetchedData.data.products);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleItemsPerPageChange = (e) => {
+    setItemsPerPage(e.target.value);
+    setCurrentpage(1);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input
+        type="number"
+        placeholder="Items per Page..."
+        onChange={handleItemsPerPageChange}
+        value={itemsPerPage}
+      />
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        {items.map((item, i) => (
+          <tr key={i}>
+            <td>{item.id}</td>
+            <td>{item.title}</td>
+            <td>{item.price}</td>
+          </tr>
+        ))}
+      </table>
     </div>
   );
 }
