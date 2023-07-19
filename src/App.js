@@ -41,8 +41,8 @@ function App() {
   };
 
   return (
-    <div className="App w-[100vw] min-h-[100vh] bg-[#F8EEFF] flex flex-col justify-start items-center p-5">
-      <h1 className="text-2xl text-[#dba6f5] font-semibold">Pagination in React</h1>
+    <div className="App w-[100vw] min-h-[100vh] bg-[#F8EEFF] flex flex-col justify-start items-center p-5 font-poppins">
+      <h1 className="text-3xl text-[#dba6f5] font-medium">Pagination in React</h1>
       <input
         type="number"
         placeholder="Enter number of items per page"
@@ -50,7 +50,7 @@ function App() {
         //value={itemsPerPage}
         className="w-1/4 bg-[#F8EEFF] border-b-2 border-[#EDC8FF] p-2 m-2 focus:outline-none"
       />
-      <table className="w-1/3 bg-slate-50 p-2 m-2">
+      <table className="w-1/3 bg-slate-50 p-2 m-2 text-[#5A5A5A]">
         <thead>
           <tr className="bg-[#EDC8FF]">
             <th className="p-2">ID</th>
@@ -68,7 +68,7 @@ function App() {
           ))}
         </tbody>
       </table>
-      <div className="flex w-20 justify-around p-2 m-2 text-[#dba6f5] font-semibold">
+      <div className="flex w-20 justify-around p-2 m-2 text-[#dba6f5] font-medium">
         <button onClick={handlePrev}>&lt; </button>
         <p>{currentPage}</p>
         <button onClick={handleNext}>&gt;</button>
