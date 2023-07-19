@@ -48,9 +48,9 @@ function App() {
         placeholder="Enter number of items per page"
         onChange={handleItemsPerPageChange}
         //value={itemsPerPage}
-        className="w-1/4 bg-[#F8EEFF] border-b-2 border-[#EDC8FF] p-2 m-2 focus:outline-none"
+        className="sm:w-1/4 w-full bg-[#F8EEFF] border-b-2 border-[#EDC8FF] p-2 m-2 focus:outline-none"
       />
-      <table className="w-1/3 bg-slate-50 p-2 m-2 text-[#5A5A5A]">
+      <table className="sm:w-1/3 w-full bg-slate-50 p-2 m-2 text-[#3a3b3c]">
         <thead>
           <tr className="bg-[#EDC8FF]">
             <th className="p-2">ID</th>
